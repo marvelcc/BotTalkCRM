@@ -1,0 +1,73 @@
+---
+intents:
+
+  presales:
+    - 'I would like to buy something'
+    - 'Buy something'
+  
+  inStoreIntent:
+    - 'what do you have'
+  
+  tshirtDetailIntent:
+    - 'tell me more about the tshirt'
+  
+  hatDetailIntent:
+    - 'tell me more about the hat'
+    
+  jeansDetailIntent:
+    - 'tell me more about the jeans'
+    
+  sneakerDetailIntent:
+    - 'tell me more about the sneaker'
+    
+  jacketDetailIntent:
+    - 'tell me more about the jacket'
+  
+  service_p:
+    - 'I would like to submit a complaint'
+    - 'submit complaint'
+
+  inputServicePNameIntent:
+    - '{firstname} {lastname}'
+    
+  inputServicePPhoneIntent:
+    - '{phonenumber}'
+    
+  inputComplaintIntent:
+    - '{complaint_msg}'
+  
+  loyal:
+    - 'What is my current loyalty status'
+    - 'current status'
+    - 'cs'
+   
+  inputLoyalFullNameIntent:
+    - '{fullname}'
+
+  influencer:
+    - 'I would like to recommend this company on twitter'
+    - 'recommend'
+
+  angebot:
+    - 'generate a quote'
+
+  beschwerde:
+    - 'do i have any open complaints'
+    - 'open feedback'
+    - 'open complaint'
+
+  service_m:
+    - 'change the order status'
+
+  add_contact:
+    - 'add a new contact'
+
+  contact_update:
+    - 'update information of a customer'
+
+  upcoming_events:
+    - 'do i have any upcoming events'
+    - 'upcoming events'
+
+  add_event:
+    - 'add a new event'

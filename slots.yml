@@ -1,0 +1,32 @@
+---
+slots:
+  firstname: 'AMAZON.US_FIRST_NAME'
+  lastname:
+    - 'wilson'
+    - 'harrison'
+    - 'smith'
+    - 'miller'
+    - 'williams'
+    - 'bond'
+    - 'Wilson'
+    - 'Harrison'
+    - 'Smith'
+    - 'Miller'
+    - 'Williams'
+    - 'Bond'
+  
+  fullname: 'AMAZON.Person'
+#   - 'Kevin Smith'
+#    - 'Kevin smith'
+#    - 'Donald Harrison'
+#    - 'Donald harrison'
+#    - 'Annie Miller'
+#    - 'Annie miller'
+#    - 'Jim Wilson'
+#    - 'Jim wilson'
+#    - 'James Bond'
+#    - 'James bond'
+
+  phonenumber: 'AMAZON.PhoneNumber'
+  complaint_msg: 
+    - 'shipment late'
