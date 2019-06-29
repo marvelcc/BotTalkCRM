@@ -1,6 +1,7 @@
 ---
 slots:
   firstname: 'AMAZON.US_FIRST_NAME'
+  
   lastname:
     - 'wilson'
     - 'harrison'
@@ -15,18 +16,86 @@ slots:
     - 'Williams'
     - 'Bond'
   
-  fullname: 'AMAZON.Person'
-#   - 'Kevin Smith'
-#    - 'Kevin smith'
-#    - 'Donald Harrison'
-#    - 'Donald harrison'
-#    - 'Annie Miller'
-#    - 'Annie miller'
-#    - 'Jim Wilson'
-#    - 'Jim wilson'
-#    - 'James Bond'
-#    - 'James bond'
+  fullname:
+    - 'Kevin Smith'
+    - 'kevin smith'
+    - 'kevin Smith'
+    - 'Kevin smith'
+    - 'Donald Harrison'
+    - 'Donald harrison'
+    - 'donald Harrison'
+    - 'donald harrison'
+    - 'Annie Miller'
+    - 'Annie miller'
+    - 'annie miller'
+    - 'annie Miller'
+    - 'Jim Wilson'
+    - 'jim Wilson'
+    - 'jim wilson'
+    - 'Jim wilson'
+    - 'James Bond'
+    - 'james bond'
+    - 'james Bond'
+    - 'James bond'
+  
+  angebot_fullname:
+    - 'Kevin Smith'
+    - 'kevin smith'
+    - 'kevin Smith'
+    - 'Kevin smith'
+    - 'Donald Harrison'
+    - 'Donald harrison'
+    - 'donald Harrison'
+    - 'donald harrison'
+    - 'Annie Miller'
+    - 'Annie miller'
+    - 'annie miller'
+    - 'annie Miller'
+    - 'Jim Wilson'
+    - 'jim Wilson'
+    - 'jim wilson'
+    - 'Jim wilson'
+    - 'James Bond'
+    - 'james bond'
+    - 'james Bond'
+    - 'James bond'
 
   phonenumber: 'AMAZON.PhoneNumber'
+  
   complaint_msg: 
     - 'shipment late'
+  
+  angebot_title:
+    - 'test title'
+    
+  order_id: 'AMAZON.NUMBER'
+  
+  order_status:
+    - 'accepted'
+    - 'paid'
+    - 'cancelled'
+    - 'returned'
+    - 'finished'
+
+  ac_firstname: 'AMAZON.FirstName'
+  
+  ac_lastname:
+    - 'Smith'
+    - 'Williams'
+    - 'Miller'
+    - 'Johnson'
+    - 'Davis'
+    - 'Anderson'
+    - 'Jackson'
+  
+  ac_phone: '@bottalk.phone-number'
+  
+  s_date: 'AMAZON.DATE'
+  
+  e_date: 'AMAZON.DATE'
+  
+  event_name: 
+    - 'meeting'
+    - 'call'
+    - 'email'
+    - 'Appointment'
