@@ -1,196 +1,99 @@
 ---
-include:
-  - intents.yml
-  - slots.yml
-  - tests.yml
-scenario:
-  name: 'bot talk'
-  locale: 'en-US'
-  category: EDUCATION_AND_REFERENCE
-  invocation: 'bot talk'
-  examplePhrases:
-    - 'Alexa, open bot talk'
-  steps:
-    - name: Welcome step
-      actions: 
-        - sendText: 'Hello, welcome to BotTalk CRM, what would you like to do?'
-        - getInput:
-      next: 
-        AMAZON.CancelIntent: Exit
-        AMAZON.StopIntent: Exit
-        AMAZON.HelpIntent: Help
-        presales: Presales step
-        service_p: Servicephase input name step
-        loyal: Loyal input full name step
-        
+intents:
 
-    - name: Loyal input full name step
-      actions:
-        - sendText: 'Please state your full name.'
-        - getInput:
-      next:
-        inputLoyalFullNameIntent: Get status step
-       
+  presales:
+    - 'I would like to buy something'
+    - 'Buy something'
+  
+  inStoreIntent:
+    - 'what do you have'
+  
+  tshirtDetailIntent:
+    - 'tell me more about the tshirt'
+  
+  hatDetailIntent:
+    - 'tell me more about the hat'
+    
+  jeansDetailIntent:
+    - 'tell me more about the jeans'
+    
+  sneakerDetailIntent:
+    - 'tell me more about the sneaker'
+    
+  jacketDetailIntent:
+    - 'tell me more about the jacket'
+  
+  service_p:
+    - 'I would like to submit a complaint'
+    - 'submit complaint'
 
-    - name: Get status step
-      actions:
-        - setContext:
-            from: >
-              {%if fullname == "Kevin smith" %}2{% endif %}
-              {%if fullname == "Kevin Smith" %}2{% endif %}
-              {%if fullname == "Annie miller" %}4{% endif %}
-              {%if fullname == "Annie Miller" %}4{% endif %}
-              {%if fullname == "Donald harrison" %}6{% endif %}
-              {%if fullname == "Donald Harrison" %}6{% endif %}
-              {%if fullname == "Jim wilson" %}8{% endif %}
-              {%if fullname == "Jim Wilson" %}8{% endif %}
-            to: contact_id
-        - http.get:
-            url: 'https://b24-yu6t0j.bitrix24.de/rest/1/ci7xluaos3yg09yo/crm.contact.get?id={{contact_id}}'
-        - set: 'c_info = http_response.result'
-        - setContext:
-            from: >
-              {%if c_info.UF_CRM_1561292006844 == "44" %}Bronze{% endif %}
-              {%if c_info.UF_CRM_1561292006844 == "46" %}Silver{% endif %}
-              {%if c_info.UF_CRM_1561292006844 == "48" %}Gold{% endif %}
-              {%if c_info.UF_CRM_1561292006844 == "50" %}Platinum{% endif %}
-            to: status
-    - sendText: >
-            Your are currently {{status}} status.       
-     
-         
-    - name: Servicephase input name step
-      actions: 
-        - sendText: 'Please state your full name.'
-        - getInput:
-      next:
-        inputServicePNameIntent: Input service phase phone step
-        
-        
-    - name: Input service phase phone step
-      actions:
-        - sendText: > 
-            Please state your phone number.
-        - getInput:
-      next:
-        inputServicePPhoneIntent: Input service complaint step
+  inputServicePNameIntent:
+    - '{firstname} {lastname}'
     
+  inputServicePPhoneIntent:
+    - '{phonenumber}'
     
-    - name: Input service complaint step
-      actions:
-        - sendText: >
-            What is your complaint?
-        - getInput:
-      next:
-        inputComplaintIntent: Submit complaint step
-    
-    - name: Submit complaint step
-      actions:
-        - http.post:
-            url: 'https://b24-yu6t0j.bitrix24.de/rest/1/ci7xluaos3yg09yo/crm.lead.add'
-            headers: ["Content-Type: application/json"]
-            payload: > 
-              {
-                "fields":
-                {
-                  "TITLE":"Complaint",
-                  "NAME": "{{firstname}}",
-                  "HAS_PHONE": "Y",
-                  "LAST_NAME": "{{lastname}}",
-                  "COMMENTS": "{{complaint_msg}}",
-                  "PHONE": [
-                            { "VALUE": "{{phonenumber}}",
-                              "VALUE_TYPE": "WORK" 
-                            }
-                           ]
-                }
-              }
-        - sendText: >
-            Your complaint has been submitted.
-    
-    
-    - name: Presales step
-      actions:
-        - sendText: 'What would you like to buy?'
-        - getInput:
-      next: 
-        inStoreIntent: In-Store step
-    
-    
-    - name: In-Store step
-      actions:
-        - sendText: 'We have the following products.'
-        - http.get:
-            url: 'https://b24-yu6t0j.bitrix24.de/rest/1/ci7xluaos3yg09yo/crm.product.list'
-        - set: 'prod = http_response.result'
-        - sendText: >          
-            {% for list in prod %}
-              {{ list.NAME }}.
-            {% endfor %}
-        - getInput:
-      next: 
-       tshirtDetailIntent : Tshirt detail step
-       hatDetailIntent: Hat detail step
-       jeansDetailIntent: Jeans detail step
-       sneakerDetailIntent: Sneaker detail step
-       jacketDetailIntent: Jacket detail step
-     
-     
-    - name: Tshirt detail step
-      actions: 
-        - http.get:
-            url: 'https://b24-yu6t0j.bitrix24.de/rest/1/ci7xluaos3yg09yo/crm.product.get?id=2'
-        - set: 'info1 = http_response.result'
-        - sendText: >          
-              {{ info1.DESCRIPTION }}
-        
-        
-    - name: Hat detail step
-      actions: 
-        - http.get:
-            url: 'https://b24-yu6t0j.bitrix24.de/rest/1/ci7xluaos3yg09yo/crm.product.get?id=10'
-        - set: 'info2 = http_response.result'
-        - sendText: >          
-              {{ info2.DESCRIPTION }}
+  inputComplaintIntent:
+    - '{complaint_msg}'
+  
+  loyal:
+    - 'What is my current loyalty status'
+    - 'current status'
+    - 'cs'
+   
+  inputLoyalFullNameIntent:
+    - '{fullname}'
 
+  influencer:
+    - 'I would like to recommend this company on twitter'
+    - 'recommend'
 
-    - name: Jeans detail step
-      actions: 
-        - http.get:
-            url: 'https://b24-yu6t0j.bitrix24.de/rest/1/ci7xluaos3yg09yo/crm.product.get?id=8'
-        - set: 'info3 = http_response.result'
-        - sendText: >          
-              {{ info3.DESCRIPTION }}
-            
-            
-    - name: Sneaker detail step
-      actions: 
-        - http.get:
-            url: 'https://b24-yu6t0j.bitrix24.de/rest/1/ci7xluaos3yg09yo/crm.product.get?id=4'
-        - set: 'info4 = http_response.result'
-        - sendText: >          
-              {{ info4.DESCRIPTION }}
-            
-            
-    - name: Jacket detail step
-      actions: 
-        - http.get:
-            url: 'https://b24-yu6t0j.bitrix24.de/rest/1/ci7xluaos3yg09yo/crm.product.get?id=6'
-        - set: 'info5 = http_response.result'
-        - sendText: >          
-              {{ info5.DESCRIPTION }}
+  angebot:
+    - 'generate a quote'
+  
+  inputAngebotNameIntent:
+    - '{angebot_fullname}'
+    
+  inputAngebotTitleIntent:
+    - '{angebot_title}'
 
+  beschwerde:
+    - 'do i have any open complaints'
+    - 'open feedback'
+    - 'open complaint'
 
-        
-    - name: Exit
-      entrypoint: true
-      actions: 
-        - sendText: 'Here is a bye-bye text' 
-        
-    - name: Help
-      entrypoint: true
-      actions:
-        - sendText: 'Here is the help text'
-        - getInput: 
-      next: 
-        ok_great: Welcome step 
+  service_m:
+    - 'change the order status'
+  
+  inputOrderNumberIntent:
+    - 'number {order_id}'
+    
+  setNewOrderStatusIntent:
+    - '{order_status}'
+    
+  add_contact:
+    - 'add a new contact'
+    - 'ac'
+    
+  inputContactFullNameIntent:
+    - '{ac_firstname} {ac_lastname}'
+
+  inputContactPhoneIntent:
+    - '{ac_phone}'
+    
+  contact_update:
+    - 'update information of a customer'
+
+  upcoming_events:
+    - 'do i have any upcoming events'
+    - 'upcoming events'
+
+  add_event:
+    - 'add a new event'
+    - 'ae'
+  
+  inputDateIntent:
+    - '{s_date} to {e_date}'
+    
+  inputEventName:
+    - '{event_name}'
