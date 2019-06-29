@@ -50,6 +50,12 @@ intents:
 
   angebot:
     - 'generate a quote'
+  
+  inputAngebotNameIntent:
+    - '{angebot_fullname}'
+    
+  inputAngebotTitleIntent:
+    - '{angebot_title}'
 
   beschwerde:
     - 'do i have any open complaints'
@@ -58,10 +64,23 @@ intents:
 
   service_m:
     - 'change the order status'
-
+  
+  inputOrderNumberIntent:
+    - 'number {order_id}'
+    
+  setNewOrderStatusIntent:
+    - '{order_status}'
+    
   add_contact:
     - 'add a new contact'
+    - 'ac'
+    
+  inputContactFullNameIntent:
+    - '{ac_firstname} {ac_lastname}'
 
+  inputContactPhoneIntent:
+    - '{ac_phone}'
+    
   contact_update:
     - 'update information of a customer'
 
@@ -71,3 +90,10 @@ intents:
 
   add_event:
     - 'add a new event'
+    - 'ae'
+  
+  inputDateIntent:
+    - '{s_date} to {e_date}'
+    
+  inputEventName:
+    - '{event_name}'
